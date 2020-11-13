@@ -1,0 +1,100 @@
+import UIKit
+
+
+let arrayImmutable: [Int] = [1,2,3]
+print(arrayImmutable)
+
+let arrayImmutableSyntaxSugar = [1,2,3]
+print(arrayImmutableSyntaxSugar)
+
+//arrayImmutableSyntaxSugar.append(2) will be a error. Can't add an element to immutable array
+
+var mutableArray = [1,2,3]
+print(mutableArray)// 1 , 2 , 3
+mutableArray.append(4)
+
+print(mutableArray.contains(2)) // true
+
+print(mutableArray.capacity) // максимально хитрая штука! это количество элеметнов в массиве, которое можно туда положить до того как массив создаст новое хранилище
+print(mutableArray.count) // количество элементов в массиве
+
+mutableArray.remove(at: 0)
+print(mutableArray)
+
+mutableArray.map({
+    print($0)
+})
+
+let some = mutableArray.filter({
+    $0 > 1
+})
+
+let stringsArray: [String] = ["abcdef", "fsadgjdfsaklgjfdslgkdsfjg"]
+print(stringsArray)// можно и так
+
+// массивы могут хранить классы и структуры. В общем. Любые объекты.
+let uiArray: [UIView] = [.init(frame: .zero), .init(frame: .zero)] // тут хранятся ссылки на объекты
+print(uiArray)
+
+
+for view in uiArray {
+    print(view)
+}
+
+for (index, view) in uiArray.enumerated() {
+    print(index)
+    print(view)
+}
+
+var arrayOfOpt: [Any?] = [nil, nil, UIView.init(), 65, 5453.2, String.init("ff")] // можно хранить все
+print(arrayOfOpt)
+
+let dictionaryImmutable: [String:Int] = ["one":1, "two":2, "three":3]
+// альтернатива - let dictionaryImmutable: Dictionary<String, Any>
+print(arrayImmutable)
+
+let dictionaryImmutableSyntaxSugar = ["one":1, "two":2, "three":3]
+print(arrayImmutableSyntaxSugar)
+
+//arrayImmutableSyntaxSugar.append(2) will be a error. Can't add an element to immutable array
+
+var mutableDict = ["one":1, "two":2, "three":3]
+print(mutableDict)// 1 , 2 , 3
+//mutableDict.append(4) - так нельзя
+mutableDict["eight"] = 8
+
+//print(mutableDict.contains(2)) так нельзя. надо так
+mutableDict.values.contains(2)
+
+print(mutableDict.capacity)
+
+// массивы могут хранить классы и структуры. В общем. Любые объекты.
+let uiDict: [Int : UIView] = [1:.init(frame: .zero), 2:.init(frame: .zero)] // тут хранятся ссылки на объекты
+print(uiDict)
+
+print(uiDict[2] as Any)// 2 преобразуется через хэш. Итого скорость операции O(1)
+
+for v in uiDict {
+    print(v)
+}
+
+let immutableSet: Set<String> = ["i", "phone"]
+
+print(immutableSet.contains("i")) // true
+
+for i in immutableSet {
+    print(i)
+}
+
+
+var mutableSet: Set<String> = ["i", "phone"]
+
+let setToArray = Array(mutableSet)
+let arrayToSet = Set(mutableArray)
+
+var mutableSet2: Set<String> = ["i", "iPhone"]
+
+print(mutableSet.intersection(mutableSet2))
+
+print(mutableSet.subtracting(mutableSet2))
+
